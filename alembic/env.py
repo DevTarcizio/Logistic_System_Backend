@@ -1,14 +1,12 @@
+import asyncio
 from logging.config import fileConfig
 
-from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
+from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
-
-from src.logistic_system_api.core.settings import Settings
 from src.logistic_system_api.core.models import table_registry
-
-import asyncio
+from src.logistic_system_api.core.settings import Settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -72,6 +70,7 @@ async def run_async_migrations() -> None:
 
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
+
 
 def run_migrations_online() -> None:
     asyncio.run(run_async_migrations())
