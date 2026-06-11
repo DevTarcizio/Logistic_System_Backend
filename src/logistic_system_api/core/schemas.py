@@ -15,6 +15,23 @@ class UserPublic(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class DriverCreate(BaseModel):
+    name: str
+    telephone_number: str
+
+
+class DriverPublic(BaseModel):
+    id: int
+    name: str
+    telephone_number: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class DriverList(BaseModel):
+    drivers: list[DriverPublic]
+
+
 class LoginRequest(BaseModel):
     username: str
     password: str
